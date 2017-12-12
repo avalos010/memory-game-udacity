@@ -80,7 +80,7 @@ function click() {
             $(opened[1]).removeClass('show open');
             opened = [];
             $('.moves').text(clicks);
-        } else if(opened.length === 2) {
+        } else if (opened.length === 2) {
             clicks += 1;
             $('.moves').text(clicks);
             setTimeout(check, 1500);
@@ -89,15 +89,14 @@ function click() {
     if (clicks === 1) {
         startWatch();
     }
-              if(clicks > 30 && clicks < 50) {
-                $('.star-three').hide();
-            }
-            else if(clicks >= 50) {
-                $('.star-three').hide();
-                $('.star-two').hide();
-            }
+    if (clicks > 30 && clicks < 50) {
+        $('.star-three').hide();
+    } else if (clicks >= 50) {
+        $('.star-three').hide();
+        $('.star-two').hide();
+    }
 
-       
+
 }
 
 //When there are 2 cards flipped this function will compare them
@@ -112,19 +111,19 @@ function check() {
             opened.map(card => {
                 $(card).addClass('match');
                 matched.push(card);
-                 if (matched.length === 16) {
+                if (matched.length === 16) {
                     $('.modal').show(); // show modal when all cards are matched
                     pauseWatch();
                     $("html, body").animate({
                         scrollTop: 0
                     }, "slow");
-                      $("#overall-score").append($('.timer'));
-            $("#overall-score").append($('.stars'));
+                    $("#overall-score").append($('.timer'));
+                    $("#overall-score").append($('.stars'));
                 }
-             });
-       
+            });
 
-          
+
+
             opened = [];
         }
     }
@@ -154,15 +153,15 @@ $('.fa-repeat').click(reset);
 
 $('.close-modal').click(function() {
     $("header").append($('.timer'));
-     $(".score-panel").prepend($('.stars'));
+    $(".score-panel").prepend($('.stars'));
     $('.modal').hide();
 })
 $('.resetbtn').click(function() {
     $("header").append($('.timer'));
-     $(".score-panel").prepend($('.stars'));
+    $(".score-panel").prepend($('.stars'));
     $('.modal').hide();
-      $('.star-three').show();
-         $('.star-two').show();
+    $('.star-three').show();
+    $('.star-two').show();
 
     reset();
 })
