@@ -79,25 +79,25 @@ function click() {
             matched = [];
             $(opened[1]).removeClass('show open');
             opened = [];
-            clicks -= 1;
-            $('.moves').text(clicks/2);
-        } else {
+            $('.moves').text(clicks);
+        } else if(opened.length === 2) {
             clicks += 1;
-            $('.moves').text(clicks / 2);
+            $('.moves').text(clicks);
             setTimeout(check, 1500);
         }
     }
     if (clicks === 1) {
         startWatch();
     }
-              if(clicks > 3 && clicks < 6) {
+              if(clicks > 30 && clicks < 50) {
                 $('.star-three').hide();
             }
-            else if(clicks >= 10) {
+            else if(clicks >= 50) {
                 $('.star-three').hide();
                 $('.star-two').hide();
             }
 
+       
 }
 
 //When there are 2 cards flipped this function will compare them
@@ -112,18 +112,19 @@ function check() {
             opened.map(card => {
                 $(card).addClass('match');
                 matched.push(card);
-                 if (matched.length === 1) {
+                 if (matched.length === 16) {
                     $('.modal').show(); // show modal when all cards are matched
                     pauseWatch();
                     $("html, body").animate({
                         scrollTop: 0
                     }, "slow");
+                      $("#overall-score").append($('.timer'));
+            $("#overall-score").append($('.stars'));
                 }
              });
        
 
-            $("#overall-score").append($('.timer'));
-            $("#overall-score").append($('.stars'));
+          
             opened = [];
         }
     }
