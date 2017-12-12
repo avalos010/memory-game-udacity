@@ -1,5 +1,5 @@
 let watch, clocktimer;
-watch = new Stopwatch("timer");
+watch = new Stopwatch('.timer');
 
 
 function startWatch() {
@@ -76,7 +76,11 @@ function click() {
         $(this).addClass('open show');
         opened.push(this);
         if (opened.length === 2 && $(opened[0]).attr('id') === $(opened[1]).attr('id')) {
-            reset();
+            matched = [];
+            $(opened[1]).removeClass('show open');
+            opened = [];
+            clicks -= 1;
+            $('.moves').text(clicks/2);
         } else {
             clicks += 1;
             $('.moves').text(clicks / 2);
@@ -86,6 +90,13 @@ function click() {
     if (clicks === 1) {
         startWatch();
     }
+              if(clicks > 3 && clicks < 6) {
+                $('.star-three').hide();
+            }
+            else if(clicks >= 10) {
+                $('.star-three').hide();
+                $('.star-two').hide();
+            }
 
 }
 
@@ -101,20 +112,18 @@ function check() {
             opened.map(card => {
                 $(card).addClass('match');
                 matched.push(card);
-                if (matched.length === 16) {
+                 if (matched.length === 1) {
                     $('.modal').show(); // show modal when all cards are matched
                     pauseWatch();
                     $("html, body").animate({
                         scrollTop: 0
                     }, "slow");
-                    if (clicks < 30) {
-                        $('.stars').append($('<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>'));
-                    } else if (clicks > 31 && clicks < 50)
-                        $('.stars').append($('<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>'));
-                } else {
-                    $('.stars').append($('<li><i class="fa fa-star"></i></li>'));
                 }
-            });
+             });
+       
+
+            $("#overall-score").append($('.timer'));
+            $("#overall-score").append($('.stars'));
             opened = [];
         }
     }
@@ -143,8 +152,21 @@ $('.fa-repeat').click(reset);
 
 
 $('.close-modal').click(function() {
+    $("header").append($('.timer'));
+     $(".score-panel").prepend($('.stars'));
     $('.modal').hide();
 })
+$('.resetbtn').click(function() {
+    $("header").append($('.timer'));
+     $(".score-panel").prepend($('.stars'));
+    $('.modal').hide();
+      $('.star-three').show();
+         $('.star-two').show();
+
+    reset();
+})
+
+
 
 
 
