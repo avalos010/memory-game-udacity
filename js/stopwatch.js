@@ -5,7 +5,7 @@ Borrowed from: https://github.com/vivekmarakana/stopwatch-js/blob/master/js/stop
 
 /*Creating custom class function that can be used again*/
 var Stopwatch = function(id) {
-    var element = document.getElementById(id);
+    var element = document.querySelector(id);
     element.innerHTML = "<span id='hour'></span>" +
         "<span id='minute'></span>" +
         "<span id='second'></span>" +
