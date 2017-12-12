@@ -103,8 +103,6 @@ h1, h3 {
 .stars li {
     list-style: none;
     display: inline-block;
-    padding: 1em;
-    color: yellow;
 }
 
 .score-panel .restart {
