@@ -1,9 +1,8 @@
-let watch, clocktimer;
-watch = new Stopwatch('.timer');
+const watch = new Stopwatch('.timer');
+const clocktimer = setInterval("watch.update(false)", 1);
 
 
 function startWatch() {
-    clocktimer = setInterval("watch.update(false)", 1);
     watch.start();
 }
 
@@ -86,7 +85,7 @@ function click() {
             setTimeout(check, 1500);
         }
     }
-    if (clicks === 1) {
+    if (clicks) {
         startWatch();
     }
     if (clicks > 30 && clicks < 50) {
